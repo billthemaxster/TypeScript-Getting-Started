@@ -3,6 +3,7 @@
     "git.decorations.enabled": false,
   
     "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 5000,
   
     "files.exclude": {
         "**/.git": true,
