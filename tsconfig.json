@@ -65,7 +65,7 @@
 
     "watch": true
   },
-  "files": [
-    "app/app.ts"
+  "include": [
+    "./app/*"
   ]
 }
