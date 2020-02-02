@@ -1,26 +1,45 @@
 function startGame() {
 
-    let playerName: string = 'Thomas'
+    let playerName: string | undefined = getInputValue('playerName')
     logPlayer(playerName)
 
-    let messagesElement = document.getElementById('messages');
-    messagesElement!.innerText = 'Welcome to MultiMath! Starting new game...';
+    postScore(80, playerName)
+    postScore(-5, playerName)
 }
 
-function logPlayer(name: string) {
+function logPlayer(name: string = 'MultiMath Player'): void {
     console.log(`New game starting for player: ${name}`)
+}
+
+function getInputValue(elementId: string): string | undefined {
+    const inputElement: HTMLInputElement = document.getElementById(elementId) as HTMLInputElement
+
+    if (inputElement.value === '') {
+        return undefined
+    } else {
+        return inputElement.value;
+    }
+}
+
+function postScore(score: number, playerName: string = 'MultiMath Player'): void {
+    let logger: (value: string) => void
+
+    if (score < 0){
+        logger = logError
+    }else {
+        logger = logMessage
+    }
+
+    const scoreElement: HTMLElement | null = document.getElementById('postedScores')
+    scoreElement!.innerText = `${score} - ${playerName}`;
+
+    logger(`Score: ${score}`)
 }
 
 document.getElementById('startGame')!.addEventListener('click', startGame);
 
-let myResult: Result = {
-    playerName: 'Mark',
-    score: 5,
-    problemCount: 5,
-    factor: 7
-}
+const logMessage = (message: string) => console.log(message)
 
-let player: Person = {
-    name: 'Frank',
-    formatName: () => 'FRANK'
+function logError(err: string): void {
+    console.error(err)
 }
