@@ -12,3 +12,15 @@ function logPlayer(name: string) {
 }
 
 document.getElementById('startGame')!.addEventListener('click', startGame);
+
+let myResult: Result = {
+    playerName: 'Mark',
+    score: 5,
+    problemCount: 5,
+    factor: 7
+}
+
+let player: Person = {
+    name: 'Frank',
+    formatName: () => 'FRANK'
+}
